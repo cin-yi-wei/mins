@@ -31,15 +31,15 @@ function parseTranscript(doc) {
     if (Math.max(...Object.values(idx)) < td.length) {
       let year_semester = td[idx["學年/學期"]].innerText.trim().replace('上', '10').replace('下', '20');
       let course_number = td[idx["課號"]].innerText.trim();
-      let class_number = td[idx["班次"]].innerText.trim();
-      let course_id = year_semester + course_number + (class_number ? '-' + class_number : "");
+      let class_rank = td[idx["班次"]].innerText.trim();
+      let course_id = year_semester + course_number + (class_rank ? '-' + class_rank : "");
       let title = td[idx["課程名稱"]].innerText.trim();
       let credit = parseInt(td[idx["學分"]].innerText, 10);
       let score = td[idx["成績"]].innerText.trim();
       if (course_id_regex.test(course_id) && score_regex.test(score) && !isNaN(credit)) {
         courses[course_id] = {
           "score": score,
-          "title": title
+          "rank": class_rank
         };
       }
     }
@@ -52,25 +52,8 @@ function parseTranscript(doc) {
   return enrollment;
 }
 
-async function getHTMLDoc(uri) {
-  let ASPSESSIONIDQCTRBDCS = '';
-  let TS011fd52e = '';
-  var output = [];
-  chrome.cookies.getAll({
-    url  : 'https://ifsel3.aca.ntu.edu.tw/'
-  }, function(cookies){
-    console.log("cookies",cookies);
-    for (var i = 0; i < cookies.length; i++) {
-      var name   = cookies[i].name;
-      var value  = cookies[i].value;
-      if(name == 'ASPSESSIONIDQCTRBDCS') ASPSESSIONIDQCTRBDCS = value;
-      if(name == 'TS011fd52e') TS011fd52e = value;
-      console.log(name,value);
-    }
-  });
-  let response = await fetch(uri, {
-  
-  credentials: "same-origin"});
+async function getHTMLDocNtu(uri) {
+  let response = await fetch(uri)
   let buffer = await response.arrayBuffer();
   let decoder = new TextDecoder("utf-8");// big5
   let text = decoder.decode(buffer);
@@ -79,10 +62,8 @@ async function getHTMLDoc(uri) {
 }
 
 async function getScoreNtu() {
-
-  let doc = await getHTMLDoc(`https://ifsel3.aca.ntu.edu.tw/hissco/main_stu.asp`);
+  let doc = await getHTMLDocNtu('https://ifsel3.aca.ntu.edu.tw/hissco/main_stu.asp');
   console.log(doc);
   console.log(parseTranscript(doc));
   return parseTranscript(doc);
 }
-//let response=await fetch(`https://ifsel3.aca.ntu.edu.tw/hissco/main_stu.asp`, {credentials: "same-origin"});

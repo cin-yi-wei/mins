@@ -20,8 +20,25 @@ const server = 'http://119.14.151.252:1124';
 
 class Handler {
 
+  GetEnrollment(message, sender, sendResponse){
+/*
+    let url = new URL(`${server}/api/v1/course/show`),
+        params =  encodeURIComponent(JSON.stringify(message.courseNumber));*/
+    //Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+    let url = new URL(`${server}/api/v1/course/show?`);
+    let searchParams = new URLSearchParams(message.courseNumber);
+    console.log("Params",searchParams.toString());
+    fetch(url+searchParams,{
+      method: "GET",
+      headers:  {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    }).then(response => response.json()).then(json => console.log(json));
+  }
+
   async SendScoreNtu(message, sender, sendResponse){
-      let enrollment = getScoreNtu();
+      let enrollment = await getScoreNtu();
       fetch(`${server}/api/v1/enrollment/create`,{
         method: "POST",
         headers:  {

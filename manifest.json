@@ -5,10 +5,9 @@
   "manifest_version": 2,
   "permissions": [
     "storage",
-    "<all_urls>",
     "http://119.14.151.252:1124/*",
-     "cookies",
-     "https://ifsel3.aca.ntu.edu.tw/*"
+    "cookies",
+    "https://*.ifsel3.aca.ntu.edu.tw/*"
   ],
   "background": {
     "scripts": [
@@ -57,7 +56,17 @@
           "src/ntu/login.js"
         ],
           "all_frames": true
-      }
+      },
+      {
+          "matches": [
+            "https://nol.ntu.edu.tw/nol/coursesearch/*"
+          ],
+          "js": [
+            "lib/jquery.min.js",
+            "src/ntu/getenrollment.js"
+          ],
+            "all_frames": true
+        }
   ],
   "icons": {
     "16": "images/network16.png",
