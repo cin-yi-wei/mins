@@ -16,53 +16,22 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   return true;
 });
 
-const server = 'http://119.14.151.252:1124';
+const server = 'http://localhost:3000';
 
 class Handler {
 
-  async SendScoreNtu(message, sender, sendResponse){
-      let enrollment = getScoreNtu();
+  async postEnrollment(message, sender, sendResponse) {
       fetch(`${server}/api/v1/enrollment/create`,{
         method: "POST",
         headers:  {
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-        body: JSON.stringify(enrollment)
+        body: JSON.stringify()
       }).then(response => response.json()).then(json => console.log(json));
   }
 
-  Decaptcha(message, sender, sendResponse) {
-    fetch(`${server}/api/v1/decaptcha`, {
-      "method": "POST",
-      "body": JSON.stringify({ "pwdstr": message.DataURL })
-    })
-      .then(response => response.json())
-      .then(json => sendResponse(json));
-  }
 
-  SuccessLogin(message, sender, sendResponse) {
-    chrome.storage.local.remove("ccxpAccount",() => {
-      console.log("remove succuessful");
-      chrome.storage.local.set({ ccxpAccount: message.ccxpAccount });
-    });
-
-    fetch(`${server}/api/v1/login`, {
-      "method": "POST",
-      "body": JSON.stringify({ "userID": message.ccxpAccount })
-    })
-      .then(response => response.json())
-      .then(json => sendResponse(json));
-  }
-
-  Auth(message, sender, sendResponse) {
-    fetch(`${server}/api/v1/auth`, {
-      "method": "POST",
-      "body": JSON.stringify({ "userID": message.ccxpAccount })
-    })
-      .then(response => response.json())
-      .then(json => console.log(json));
-  }
 
   async SendScore(message, sender, sendResponse) {
 
@@ -100,7 +69,7 @@ class Handler {
     });
   }
 
-  QueryPastCourseExist(message, sender, sendResponse) {
+  GetCourse(message, sender, sendResponse) {
     chrome.storage.local.get(['ccxpAccount'], function (result) {
       fetch(`${server}/api/v1/checkCourseExist`, {
         "method": "POST",
@@ -117,34 +86,6 @@ class Handler {
     });
   }
 
-  QueryCourseScore(message, sender, sendResponse) {
-    chrome.storage.local.get(['ccxpAccount'], function (result) {
-      fetch(`${server}/api/v1/getPastCourse?courseNumber=${message.courseNumber}&userID=${result.ccxpAccount}`)
-        .then(response => response.json())
-        .then(json => sendResponse(json));
-    });
-  }
 
-  SendRating(message, sender, sendResponse) {
-    chrome.storage.local.get(['ccxpAccount'], function (result) {
-      fetch(`${server}/api/v1/rate`, {
-        "method": "POST",
-        "body": JSON.stringify({ "userID": result.ccxpAccount, "courseNumber": message.courseNumber, "rate": message.rate })
-      })
-        .then(response => response.text())
-        .then(json => sendResponse(json));
-    });
-  }
-
-  QueryRatingHistory(message, sender, sendResponse) {
-    chrome.storage.local.get(['ccxpAccount'], function (result) {
-      fetch(`${server}/api/v1/checkRate`, {
-        "method": "POST",
-        "body": JSON.stringify({ "userID": result.ccxpAccount })
-      })
-        .then(response => response.json())
-        .then(json => sendResponse(json));
-    });
-  }
 
 }

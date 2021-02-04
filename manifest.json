@@ -5,10 +5,9 @@
   "manifest_version": 2,
   "permissions": [
     "storage",
-    "<all_urls>",
-    "http://119.14.151.252:1124/*",
-     "cookies",
-     "https://ifsel3.aca.ntu.edu.tw/*"
+    "cookies",
+    "https://ifsel3.aca.ntu.edu.tw/*",
+    "http://localhost:3000/"
   ],
   "background": {
     "scripts": [
@@ -16,49 +15,34 @@
       "src/background.js",
       "src/ntu/getScore.js",
       "src/nthu/getScore.js"
-
     ],
     "persistent": false
   },
   "browser_action": {
     "default_popup": "src/popup/dist/index.html"
   },
+  "content_security_policy": "script-src 'self' http://localhost:3000/; object-src 'self'",
   "content_scripts": [
     {
-      "matches": [
-        "https://www.ccxp.nthu.edu.tw/*"
-      ],
-      "js": [
-        "src/nthu/login.js",
-        "src/nthu/decaptcha.js",
-        "src/nthu/insertRating.js",
-        "src/nthu/drawChart.js",
-        "src/nthu/insertChart.js",
-        "src/nthu/recolor.js",
-        "lib/Chart.bundle.min.js",
-        "lib/chartjs-plugin-labels.min.js",
-        "lib/chartjs-plugin-datalabels.js",
-        "lib/swiper.min.js",
-        "lib/jquery.min.js",
-        "lib/jquery.star-rating-svg.js"
-      ],
-      "css": [
-        "lib/star-rating-svg.css",
-        "lib/swiper.min.css"
-      ],
-      "all_frames": true
-    },
-    {
-        "matches": [
-          "https://my.ntu.edu.tw/*"
-        ],
-        "js": [
-          "lib/jquery.min.js",
-          "src/ntu/login.js"
-        ],
-          "all_frames": true
-      }
-  ],
+    "matches": [
+      "https://my.ntu.edu.tw/*"
+    ],
+    "js": [
+      "lib/jquery.min.js",
+      "src/ntu/login.js"
+    ],
+    "all_frames": true
+  },
+  {
+    "matches": [
+      "https://nol.ntu.edu.tw/nol/coursesearch/*"
+    ],
+    "js": [
+      "lib/jquery.min.js",
+      "src/ntu/getCoursesAndShow.js"
+    ],
+    "all_frames": true
+  }],
   "icons": {
     "16": "images/network16.png",
     "24": "images/network24.png",

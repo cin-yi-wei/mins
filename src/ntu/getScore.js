@@ -69,7 +69,7 @@ async function getHTMLDoc(uri) {
     }
   });
   let response = await fetch(uri, {
-  
+
   credentials: "same-origin"});
   let buffer = await response.arrayBuffer();
   let decoder = new TextDecoder("utf-8");// big5
@@ -80,7 +80,7 @@ async function getHTMLDoc(uri) {
 
 async function getScoreNtu() {
 
-  let doc = await getHTMLDoc(`https://ifsel3.aca.ntu.edu.tw/hissco/main_stu.asp`);
+  let doc = await getHTMLDoc('https://ifsel3.aca.ntu.edu.tw/hissco/main_stu.asp');
   console.log(doc);
   console.log(parseTranscript(doc));
   return parseTranscript(doc);
