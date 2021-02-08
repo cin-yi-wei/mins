@@ -63,7 +63,7 @@
           ],
           "js": [
             "lib/jquery.min.js",
-            "src/ntu/getenrollment.js"
+            "src/ntu/getCourse.js"
           ],
             "all_frames": true
         }
