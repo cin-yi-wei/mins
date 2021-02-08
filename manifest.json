@@ -28,7 +28,7 @@
         "lib/jquery.min.js",
         "src/content_script/ntu/postTranscriptJsonInBackground.js",
         "src/content_script/ntu/getCourseJsonFromApi.js",
-        "src/content_script/ntu/InsertPresnetaionToDomObject.js",
+        "src/content_script/ntu/InsertPresentationToDomObject.js",
         "src/content_script/ntu/parseTranscriptToJson.js",
         "src/content_script/ntu/parseCourseSearchToJson.js",
         "src/content_script/ntu/main.js"
