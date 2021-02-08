@@ -5,16 +5,13 @@
   "manifest_version": 2,
   "permissions": [
     "storage",
-    "cookies",
-    "https://ifsel3.aca.ntu.edu.tw/*",
-    "http://localhost:3000/"
+    "https://*.ifsel3.aca.ntu.edu.tw/*"
   ],
   "background": {
     "scripts": [
       "lib/jquery.min.js",
-      "src/background.js",
-      "src/ntu/getScore.js",
-      "src/nthu/getScore.js"
+      "src/background/handler.js",
+      "src/background/addListener.js"
     ],
     "persistent": false
   },
@@ -24,25 +21,20 @@
   "content_security_policy": "script-src 'self' http://localhost:3000/; object-src 'self'",
   "content_scripts": [
     {
-    "matches": [
-      "https://my.ntu.edu.tw/*"
-    ],
-    "js": [
-      "lib/jquery.min.js",
-      "src/ntu/login.js"
-    ],
-    "all_frames": true
-  },
-  {
-    "matches": [
-      "https://nol.ntu.edu.tw/nol/coursesearch/*"
-    ],
-    "js": [
-      "lib/jquery.min.js",
-      "src/ntu/getCoursesAndShow.js"
-    ],
-    "all_frames": true
-  }],
+      "matches": [
+        "https://nol.ntu.edu.tw/nol/coursesearch/*"
+      ],
+      "js": [
+        "lib/jquery.min.js",
+        "src/content_script/ntu/postTranscriptInBackground.js",
+        "src/content_script/ntu/getCourseJsonFromApi.js",
+        "src/content_script/ntu/InsertPresnetaionToDomObject.js",
+        "src/content_script/ntu/parseCourseSearchToJson.js",
+        "src/content_script/ntu/main.js"
+        ],
+      "all_frames": true
+    }
+  ],
   "icons": {
     "16": "images/network16.png",
     "24": "images/network24.png",
