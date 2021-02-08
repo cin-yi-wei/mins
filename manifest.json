@@ -5,7 +5,7 @@
   "manifest_version": 2,
   "permissions": [
     "storage",
-    "http://119.14.151.252:1124/*",
+    "https://secure-mesa-73673.herokuapp.com/*",
     "cookies",
     "https://*.ifsel3.aca.ntu.edu.tw/*"
   ],

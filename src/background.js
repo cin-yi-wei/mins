@@ -16,20 +16,20 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   return true;
 });
 
-const server = 'http://119.14.151.252:1124';
+const server = 'https://secure-mesa-73673.herokuapp.com';
 
 class Handler {
 
-  GetEnrollment(message, sender, sendResponse){
+  GetCourses(message, sender, sendResponse){
 /*
     let url = new URL(`${server}/api/v1/course/show`),
         params =  encodeURIComponent(JSON.stringify(message.courseNumber));*/
     //Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
     let url = new URL(`${server}/api/v1/course/show?`);
-    let searchParams = new URLSearchParams(message.courseNumber);
+    console.log(message.course);
+    let searchParams = new URLSearchParams(message.course);
     console.log("Params",searchParams.toString());
-    fetch(url+searchParams,{
-      method: "GET",
+    fetch(url+searchParams.toString(),{
       headers:  {
         "Content-Type": "application/json",
         "Accept": "application/json"
