@@ -5,7 +5,8 @@
   "manifest_version": 2,
   "permissions": [
     "storage",
-    "https://*.ifsel3.aca.ntu.edu.tw/*"
+    "https://secure-mesa-73673.herokuapp.com/*",
+    "https://ifsel3.aca.ntu.edu.tw/hissco/main_stu.asp"
   ],
   "background": {
     "scripts": [
@@ -26,11 +27,22 @@
       ],
       "js": [
         "lib/jquery.min.js",
-        "src/content_script/ntu/postTranscriptInBackground.js",
         "src/content_script/ntu/getCourseJsonFromApi.js",
         "src/content_script/ntu/InsertPresnetaionToDomObject.js",
         "src/content_script/ntu/parseCourseSearchToJson.js",
         "src/content_script/ntu/main.js"
+        ],
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://my.ntu.edu.tw/*"
+      ],
+      "js": [
+        "lib/jquery.min.js",
+        "src/content_script/ntu/getCourseJsonFromApi.js",
+        "src/content_script/ntu/parseTranscriptToJson.js",
+        "src/content_script/ntu/login.js"
         ],
       "all_frames": true
     }
