@@ -3,6 +3,10 @@
     "test": "mocha"
   },
   "dependencies": {
-    "mocha": "^8.2.1"
+    "deep-equal": "^2.0.5",
+    "dom-parser": "^0.1.6",
+    "jsdom": "^16.4.0",
+    "mocha": "^8.2.1",
+    "node-html-parser": "^2.1.0"
   }
 }
