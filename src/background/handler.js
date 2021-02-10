@@ -1,7 +1,6 @@
 'use strict'
-console.log('handler.js')
 const server = 'https://secure-mesa-73673.herokuapp.com';
-class Handler {
+var Handler = {
 
   GetCourses(message, sender, sendResponse){
     let url = new URL(`${server}/api/v1/course/show?`);
@@ -12,17 +11,15 @@ class Handler {
         "Accept": "application/json"
       }
     }).then(response => response.json()).then(json => console.log(json));
-  }
+  },
 
   async GetScoreNtu(message, sender, sendResponse){
     let dom = await fetch('https://ifsel3.aca.ntu.edu.tw/hissco/main_stu.asp')
     let buffer = await dom.arrayBuffer();
-    let decoder = new TextDecoder("utf-8");// big5
+    let decoder = new TextDecoder("utf-8");
     let text = decoder.decode(buffer);
-    let parser = new DOMParser();
-    console.log(parser.parseFromString(text, "text/html"));
-    return parser.parseFromString(text, "text/html");
-  }
+    return text;
+  },
 
   SendScoreNtu(message, sender, sendResponse){
     let enrollment = message.argument;
@@ -35,6 +32,5 @@ class Handler {
       body: JSON.stringify(enrollment)
     }).then(response => response.json()).then(json => console.log(json));
   }
-
 
 }
