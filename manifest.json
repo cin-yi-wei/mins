@@ -27,10 +27,10 @@
       ],
       "js": [
         "lib/jquery.min.js",
-        "src/content_script/ntu/getCourseJsonFromApi.js",
+        "src/content_script/ntu/toBackgroundApi.js",
         "src/content_script/ntu/InsertPresnetaionToDomObject.js",
         "src/content_script/ntu/parseCourseSearchToJson.js",
-        "src/content_script/ntu/main.js"
+        "src/content_script/ntu/getCourseMain.js"
         ],
       "all_frames": true
     },
@@ -40,9 +40,9 @@
       ],
       "js": [
         "lib/jquery.min.js",
-        "src/content_script/ntu/getCourseJsonFromApi.js",
+        "src/content_script/ntu/toBackgroundApi.js",
         "src/content_script/ntu/parseTranscriptToJson.js",
-        "src/content_script/ntu/login.js"
+        "src/content_script/ntu/postTranscriptMain.js"
         ],
       "all_frames": true
     }
