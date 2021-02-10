@@ -9,31 +9,47 @@ chrome.runtime.onInstalled.addListener(function(install) {
   });
 });
 */
-
+/*
 async function doSomethingWith(message, sender, sendResponse) {
-  let handler = new Handler();
-  let response = await handler[message.action](message, sender, sendResponse);
+  let handler = Object.create(Handler);
+  var response = await handler[message.action](message, sender, sendResponse).then( v =>{return v;} );
   console.log(response);
   return response;
 }
+*/
+function asChromeListener(listener) {
+  return (message, sender, sendResponse) => {
+    const returnValue = listener(message, sender);
+    if (isPromise(returnValue)) {
+      returnValue.then( (v) => {sendResponse(v)} );
+      return true;
+    }
+    else {
+      if (typeof returnValue !== 'undefined') {
+        sendResponse(returnValue);
+      }
+      return false;
+    }
+  };
+}
 
-chrome.runtime.onMessage.addListener(async function (message, sender, sendResponse) {
+function isPromise(value) {
+  return typeof value === 'object' && value !== null && 'then' in value && 'catch' in value;
+}
 
-  /*let handler = Object.create(Handler);
-  var response = handler[message.action](message, sender, sendResponse).then( v =>{return v;} );
-*///sendResponse( "1" );
+chrome.runtime.onMessage.addListener(asChromeListener(async (message) => {
+  let handler = Object.create(Handler);
+  return await handler[message.action](message);
+}));
+
+/*
+chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) =>{
   //let handler = new Handler();
   //let response = await handler[message.action](message, sender, sendResponse);
-  let wait = await doSomethingWith(message, sender, sendResponse)
-  sendResponse(wait);
 
-  //sendResponse(  response )
-//  console.log(response);
-  //sendResponse( "1" ); //{response: response}
-  /*
-  setTimeout(function(){
-    console.log("2",response);
-});
-*/
+  let handler = Object.create(Handler);
+  var response = await handler[message.action](message, sender, sendResponse); //.then(sendResponse)
+  sendResponse(response);
   return true;
 });
+*/
