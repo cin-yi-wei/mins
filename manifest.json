@@ -5,12 +5,16 @@
   "manifest_version": 2,
   "permissions": [
     "storage",
-    "https://*.ifsel3.aca.ntu.edu.tw/*"
+    "https://*.ifsel3.aca.ntu.edu.tw/*",
+    "https://mighty-woodland-62500.herokuapp.com/*"
   ],
   "background": {
     "scripts": [
       "lib/jquery.min.js",
       "src/background/handler.js",
+      "src/background/ntu/parseNtuTranscriptToJson.js",
+      "src/background/ntu/loadNtuTranscript.js",
+      "src/background/fetchEnrollments.js",
       "src/background/addListener.js"
     ],
     "persistent": false
@@ -26,12 +30,12 @@
       ],
       "js": [
         "lib/jquery.min.js",
-        "src/content_script/ntu/postTranscriptJsonInBackground.js",
-        "src/content_script/ntu/getCourseJsonFromApi.js",
-        "src/content_script/ntu/insertPresentationToDomObject.js",
-        "src/content_script/ntu/parseTranscriptToJson.js",
-        "src/content_script/ntu/parseCourseSearchToJson.js",
-        "src/content_script/ntu/main.js"
+        "src/content_script/ntu/fetchMessage.js",
+        "src/content_script/ntu/fetchTranscript.js",
+        "src/content_script/ntu/loadCourses.js",
+        "src/content_script/ntu/course_search/parseToJson.js",
+        "src/content_script/ntu/course_search/insertPresentation.js",
+        "src/content_script/ntu/course_search/main.js"
         ],
       "all_frames": true
     }

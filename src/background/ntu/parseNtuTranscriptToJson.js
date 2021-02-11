@@ -1,5 +1,5 @@
 'use strict'
-function parseTranscriptToJson(doc) {
+function parseNtuTranscriptToJson(doc) {
   const STUDENT_ID_REGEX = /\?regno=([ABCDEFHJKNPQRSTYZ]\d{2}[1-9ABE][0-4]\d[0-3]\d{2})&/i;
   const COURSE_ID_REGEX = /\b\d{3}[12]0[a-zA-CEFHJ-Z ][a-zA-Z ]{1,5}[1-8]\d{3}(-\w{2})?\b/;
   const SCORE_REGEX = /\b(A+|A|A-|B+|B|B-|C+|C|C-|F|X)\b/;
@@ -34,7 +34,7 @@ function parseTranscriptToJson(doc) {
   }
   return {
     "university": "NTU",
-    "student": student,
+    student,
     courses
   };
 }
