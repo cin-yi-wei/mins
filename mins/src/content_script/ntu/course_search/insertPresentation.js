@@ -21,10 +21,9 @@ function insertPresentation(courseInfo, doc) {
   for (let row of coursesRows) {
     let course_id = to_course_id(row);
     if (courseInfo.fail) {
-      row.insertCell(-1).innerHTML = '<a target="_self" href="https://ifsel3.aca.ntu.edu.tw/hissco/index.asp">請先登入</a>';
+      row.insertCell(-1).innerHTML = '<a target="_blank" href="https://ifsel3.aca.ntu.edu.tw/hissco/index.asp">請先登入</a>';
     } else {
       row.insertCell(-1).textContent = (courseInfo[course_id] || {}).average || '資料未齊';
-      row.style.backgroundColor = (courseInfo[course_id] || {}).average ? '#66DBFF' : '#74E647';
     }
   }
 }

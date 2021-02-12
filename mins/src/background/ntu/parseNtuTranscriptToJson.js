@@ -33,7 +33,7 @@ function parseNtuTranscriptToJson(doc) {
     }
   }
   return {
-    "university": "NTU",
+    university: "NTU",
     student,
     courses
   };

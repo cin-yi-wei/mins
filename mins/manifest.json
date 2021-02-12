@@ -10,7 +10,6 @@
   ],
   "background": {
     "scripts": [
-      "lib/jquery.min.js",
       "src/background/handler.js",
       "src/background/ntu/parseNtuTranscriptToJson.js",
       "src/background/ntu/loadNtuTranscript.js",
@@ -22,14 +21,12 @@
   "browser_action": {
     "default_popup": "src/popup/dist/index.html"
   },
-  "content_security_policy": "script-src 'self' http://localhost:3000/; object-src 'self'",
   "content_scripts": [
     {
       "matches": [
         "https://nol.ntu.edu.tw/nol/coursesearch/*"
       ],
       "js": [
-        "lib/jquery.min.js",
         "src/content_script/ntu/fetchMessage.js",
         "src/content_script/ntu/fetchTranscript.js",
         "src/content_script/ntu/loadCourses.js",
