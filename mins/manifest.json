@@ -19,7 +19,7 @@
     "persistent": false
   },
   "browser_action": {
-    "default_popup": "src/popup/dist/index.html"
+    "default_popup": "popup/index.html"
   },
   "content_scripts": [
     {
@@ -38,11 +38,6 @@
     }
   ],
   "icons": {
-    "16": "images/network16.png",
-    "24": "images/network24.png",
-    "32": "images/network32.png",
-    "64": "images/network64.png",
-    "128": "images/network128.png",
-    "512": "images/network512.png"
+    "128": "images/mins128.png"
   }
 }
