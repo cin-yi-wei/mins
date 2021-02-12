@@ -1,8 +1,10 @@
 # mins v1.0.0
 
-A browser extension that shares score distributions extended from NTHU_ScoreSharing.
+A browser extension that shares score distributions by adding GPA column extended from NTHU_ScoreSharing.
 You will be able to see score distributions of curriculums if anyone with this extension has it.  
 In return, every class that you have taken will have its score distribution submitted to the shared database.
+
+![Example](https://i.imgur.com/2b42i4h.png)
 
 ## Manual Installation 手動安裝
 1. [Download](https://github.com/cin-yi-wei/mins/archive/master.zip) and extract it. [下載](https://github.com/cin-yi-wei/mins/archive/master.zip)並解壓縮該檔案。
