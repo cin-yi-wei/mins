@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "manifest_version": 2,
   "permissions": [
-    "storage",
     "https://*.ifsel3.aca.ntu.edu.tw/*",
     "https://mighty-woodland-62500.herokuapp.com/*"
   ],
