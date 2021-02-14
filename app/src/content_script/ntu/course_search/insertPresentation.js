@@ -5,19 +5,18 @@ function insertPresentation(courseInfo, doc) {
   let idx = {"課號": 2, "班次": 3};
   let indexRow = doc.querySelector('tr[align="center"][bgcolor="#DDEDFF"]');
   let coursesRows = doc.querySelectorAll('tr[align="center"]:not([bgcolor="#DDEDFF"])');
-  indexRow.insertCell(-1).textContent = '平均 GPA';
   let columnNum = indexRow.children.length;
   for (let j = 0; j < columnNum; ++j) {
     let text = indexRow.children[j].textContent.trim();
     if (text in idx) idx[text] = j;
   }
+  indexRow.insertCell(-1).textContent = '平均 GPA';
   let to_course_id = function(row) {
     let tds = row.children;
     let course_number = tds[idx["課號"]].textContent.trim();
     let class_number = tds[idx["班次"]].textContent.trim();
     return year_semester + course_number + (class_number ? '-' + class_number : "");
   }
-  console.log(courseInfo);
   for (let row of coursesRows) {
     let course_id = to_course_id(row);
     if (courseInfo.fail) {
