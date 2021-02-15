@@ -1,6 +1,6 @@
 'use strict'
 function parseToJson(doc) {
-  const COURSE_ID_REGEX = /\b\d{3}[12]0[a-zA-CEFHJ-Z ][a-zA-Z ]{1,5}[1-8]\d{3}(-\w{2})?\b/;
+  const COURSE_ID_REGEX = /\b\d{3}[12]0[a-zA-Z\& ]{2,6}[1-8]\d{3}(-\w{2})?\b/;
   let year_semester = doc.querySelector('#select_sem').querySelector('option[selected]').textContent.replace('-', '') + '0';
   let idx = {"課號": 2, "班次": 3};
   let indexRow = doc.querySelector('tr[align="center"][bgcolor="#DDEDFF"]');
