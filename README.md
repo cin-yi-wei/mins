@@ -16,3 +16,6 @@ In return, every class that you have taken will have its score distribution subm
 ## How to run the test
 1. `npm install mocha`
 2. With the test script in `package.json`, you can `npm test` to run test.
+
+## Pull Request
+We accept pull request from anyone if you have good reason on publish. Meanwhile, we strongly suggest you post an issue or send an email to development@mins.page for discussion on the service.
