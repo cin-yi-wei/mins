@@ -2,7 +2,7 @@
 
 let year_sem = document.querySelector('#select_sem').querySelector('option[selected]').textContent.replace('-', '') + '0';
 let rows = getAllRows(document);
-let input = {university: "NTU", courses: rows.map(c => year_sem + parseRow(c))};
+let input = {university: "NTU", courses: rows.map(parseRow)};
 
 document.querySelector('tr[align="center"][bgcolor="#DDEDFF"]').insertCell(-1).textContent = '平均 GPA';
 rows.map(row => row.insertCell(-1).textContent = '⌛');
@@ -24,6 +24,7 @@ then(response => {
     then(() => loadCourses(input)).
     then(insertPresentation)
   } else {
-    return insertPresentation(response);
+    insertPresentation(response);
+    insertPopper(response, document);
   }
 });

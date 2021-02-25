@@ -2,7 +2,7 @@
 const server = 'https://mighty-woodland-62500.herokuapp.com';
 let handler = {
   loadCourses(message, sender, sendResponse) {
-    fetch(`${server}/api/v1/course/show` ,{
+    fetch(`${server}/api/v2/course/show` ,{
       method: 'POST',
       headers:  {
         "Content-Type": "application/json",
