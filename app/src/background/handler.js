@@ -1,8 +1,10 @@
 'use strict'
-const server = 'https://mighty-woodland-62500.herokuapp.com';
+const server = //'http://119.14.151.252:1124';
+                'https://mighty-woodland-62500.herokuapp.com';
 let handler = {
   loadCourses(message, sender, sendResponse) {
-    fetch(`${server}/api/v1/course/show` ,{
+    console.log("message",message);
+    fetch(`${server}/api/v2/course/show` ,{
       method: 'POST',
       headers:  {
         "Content-Type": "application/json",

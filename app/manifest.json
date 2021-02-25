@@ -25,12 +25,20 @@
       "matches": [
         "https://nol.ntu.edu.tw/nol/coursesearch/*"
       ],
+      "css": [
+        "lib/swiper-bundle.min.css"
+      ],
       "js": [
+        "lib/swiper-bundle.min.js",
+        "lib/Chart.min.js",
+        "lib/popper.min.js",
         "src/content_script/ntu/fetchMessage.js",
         "src/content_script/ntu/fetchTranscript.js",
         "src/content_script/ntu/loadCourses.js",
         "src/content_script/ntu/course_search/parseToJson.js",
         "src/content_script/ntu/course_search/insertPresentation.js",
+
+        "src/content_script/ntu/course_search/insertPopper.js",
         "src/content_script/ntu/course_search/main.js"
         ],
       "all_frames": true

@@ -7,6 +7,7 @@ then(response => {
     then(response => loadCourses(parseToJson(document))).
     then(response => insertPresentation(response.fail ? {fail: true} : response, document))
   } else {
-    return insertPresentation(response, document);
+    insertPresentation(response, document);
+    insertPopper(response, document);
   }
 });

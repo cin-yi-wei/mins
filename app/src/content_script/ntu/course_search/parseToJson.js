@@ -15,10 +15,12 @@ function parseToJson(doc) {
     let td = row.children;
     let course_number = td[idx["課號"]].textContent.trim();
     let class_id = td[idx["班次"]].textContent.trim();
-    let course_id = year_semester + course_number + (class_id ? '-' + class_id : "");
+    let course_id = /*year_semester +*/ course_number + (class_id ? '-' + class_id : "");
+    courses.push(course_id);
+/*
     if (COURSE_ID_REGEX.test(course_id)) {
       courses.push(course_id);
-    }
+    }*/
   }
   return {
     "university": "NTU",
