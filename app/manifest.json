@@ -1,7 +1,7 @@
 {
   "name": "mins",
   "description": "A community sharing score distributions",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "manifest_version": 2,
   "permissions": [
     "https://*.ifsel3.aca.ntu.edu.tw/*",
@@ -35,6 +35,8 @@
         "src/content_script/ntu/fetchMessage.js",
         "src/content_script/ntu/fetchTranscript.js",
         "src/content_script/ntu/loadCourses.js",
+        "src/content_script/ntu/course_search/getAllRows.js",
+        "src/content_script/ntu/course_search/parseRow.js",
         "src/content_script/ntu/course_search/parseToJson.js",
         "src/content_script/ntu/course_search/insertPresentation.js",
         "src/content_script/ntu/course_search/insertPieChart.js",
@@ -46,6 +48,6 @@
     }
   ],
   "icons": {
-    "128": "images/mins128.png"
+    "128": "images/mins128_b.png"
   }
 }
