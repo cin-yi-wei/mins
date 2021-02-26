@@ -37,8 +37,9 @@
         "src/content_script/ntu/loadCourses.js",
         "src/content_script/ntu/course_search/parseToJson.js",
         "src/content_script/ntu/course_search/insertPresentation.js",
-
+        "src/content_script/ntu/course_search/insertPieChart.js",
         "src/content_script/ntu/course_search/insertPopper.js",
+        "src/content_script/ntu/course_search/insertListenerToDom.js",
         "src/content_script/ntu/course_search/main.js"
         ],
       "all_frames": true
