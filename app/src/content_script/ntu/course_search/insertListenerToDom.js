@@ -63,8 +63,7 @@ function insertListenerToDom(response){
             }],
             labels: Object.keys(distribution)
           };
-
-          let pieChart = insertPieChart(data);
+          let pieChart = insertPieChart(data,key);
           swiperWrapper.appendChild(pieChart);
         }
       }
