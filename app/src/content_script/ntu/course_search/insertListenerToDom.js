@@ -63,7 +63,7 @@ function insertListenerToDom(response){
             }],
             labels: Object.keys(distribution)
           };
-          let pieChart = insertPieChart(data,key);
+          let pieChart = insertPieChart(data,key,course_id);
           swiperWrapper.appendChild(pieChart);
         }
       }
