@@ -12,12 +12,8 @@ function insertListenerToDom(response){
   let popperInstance ;
 
   function onMouseenter(dom) {
-    let idx = {"課號": 2, "班次": 3};
-    let td = dom.target.parentNode.children;
-    let course_number = td[idx["課號"]].textContent.trim();
-    let class_id = td[idx["班次"]].textContent.trim();
-    let course_id = course_number + (class_id ? '-' + class_id : "");
 
+    let course_id = parseRow(dom.target.parentNode);
     let haveData =  response.hasOwnProperty(course_id) ? (Object.values(response[course_id]).filter(course => course.average != null ).length != 0 ) : response.hasOwnProperty(course_id);
     if(!haveData) return 0;
 

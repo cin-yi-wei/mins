@@ -12,7 +12,7 @@ function insertPresentation(courseInfo) {
     if (courseInfo.fail) {
       row.lastElementChild.innerHTML = '<a target="_blank" href="https://ifsel3.aca.ntu.edu.tw/hissco/index.asp">請先登入</a>';
     } else {
-      row.lastElementChild.textContent = (courseInfo[year_sem + parseRow(row)] || {}).average || '資料未齊';
+      row.lastElementChild.textContent = (courseInfo[parseRow(row)][year_sem] || {}).average || '資料未齊';
     }
   })
 }
@@ -24,6 +24,7 @@ then(response => {
     then(() => loadCourses(input)).
     then(insertPresentation)
   } else {
+    console.log( response);
     insertPresentation(response, document);
     insertListenerToDom(response, document);
   }
