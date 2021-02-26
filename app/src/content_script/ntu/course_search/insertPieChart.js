@@ -1,8 +1,8 @@
-function insertPieChart(data,year_sem){
+function insertPieChart(data,year_sem,course_id){
   let pieOptions = {
       title: {
         display: true,
-        text: year_sem
+        text: year_sem+" "+course_id
       },
       radiusBackground: {
         color: '#d1d1d1'
