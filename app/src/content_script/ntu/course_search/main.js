@@ -24,7 +24,6 @@ then(response => {
     then(() => loadCourses(input)).
     then(insertPresentation)
   } else {
-    console.log( response);
     insertPresentation(response, document);
     insertListenerToDom(response, document);
   }
