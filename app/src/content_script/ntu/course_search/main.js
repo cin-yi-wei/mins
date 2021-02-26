@@ -8,6 +8,6 @@ then(response => {
     then(response => insertPresentation(response.fail ? {fail: true} : response, document))
   } else {
     insertPresentation(response, document);
-    insertPopper(response, document);
+    insertListenerToDom(response, document);
   }
 });
