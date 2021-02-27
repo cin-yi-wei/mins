@@ -47,24 +47,25 @@ function insertListenerToDom(courseInfo, dom) {
         swiperButtonPrev.style.cssText += "border: 0;background-color: transparent;";
 
         for (let [course, info] of filtered_yearsem_info) {
+          console.log(course, info);
           let distribution = info.distribution;
           let data = {
             datasets: [{
               data: Object.values(distribution),
               backgroundColor: Object.keys(distribution).map(color => {
                 return {
-                  "A+": 'rgba(54, 162, 235, 0.6)',
-                  "A" : 'rgba(54, 162, 235, 0.6)',
-                  "A-": 'rgba(54, 162, 235, 0.6)',
-                  "B+": 'rgba(75, 192, 192, 0.6)',
-                  "B" : 'rgba(75, 192, 192, 0.6)',
-                  "B-": 'rgba(75, 192, 192, 0.6)',
-                  "C+": 'rgba(255, 206, 86, 0.6)',
-                  "C" : 'rgba(255, 206, 86, 0.6)',
-                  "C-": 'rgba(255, 206, 86, 0.6)',
-                  "D" : 'rgba(255, 99, 132, 0.6)',
-                  "E" : 'rgba(255, 99, 132, 0.6)',
-                  "X" : 'rgba(255, 99, 132, 0.6)',
+                  "A+": 'rgba(54, 162, 235, 0.8)',
+                  "A" : 'rgba(54, 162, 235, 0.5)',
+                  "A-": 'rgba(54, 162, 235, 0.3)',
+                  "B+": 'rgba(75, 192, 192, 0.8)',
+                  "B" : 'rgba(75, 192, 192, 0.5)',
+                  "B-": 'rgba(75, 192, 192, 0.3)',
+                  "C+": 'rgba(255, 206, 86, 0.8)',
+                  "C" : 'rgba(255, 206, 86, 0.5)',
+                  "C-": 'rgba(255, 206, 86, 0.3)',
+                  "D" : 'rgba(255, 99, 132, 0.8)',
+                  "F" : 'rgba(255, 99, 132, 0.5)',
+                  "X" : 'rgba(255, 99, 132, 0.3)',
                   "unknown": 'rgba(0, 0, 0, 0.2)',
               }[color]}),
               borderWidth: 0,
