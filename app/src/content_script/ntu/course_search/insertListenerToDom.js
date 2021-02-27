@@ -7,27 +7,15 @@ function insertListenerToDom(courseInfo, dom) {
   let popper = insertPopper();
   dom.body.appendChild(popper);
   let popperInstance = {};
-  let swiper = new Swiper('.swiper-container', {
-    spaceBetween: 30,
-    centeredSlides: true,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    }
-  });
 
   for (let row of getAllRows(dom)) {
     var target = row.lastElementChild;
     target.addEventListener("mouseenter", (mouseEvent) => {
       let course_id = parseRow(mouseEvent.target.parentNode);
-      let filtered_yearsem_info = Object.entries(courseInfo[course_id]).filter(key_value => key_value[1].average);
+      let filtered_yearsem_info = Object.entries(courseInfo[course_id]).
+        filter(key_value => key_value[1].average).sort().reverse();
       if (filtered_yearsem_info.length == 0) return;
       menuOpenCloseErgoTimer(0, () => {
-        let selected = Object.fromEntries(filtered_yearsem_info);
 
         popper.querySelectorAll('.swiper-container').forEach(e => e.parentNode.removeChild(e));
         popper.removeAttribute("hidden");
@@ -47,12 +35,11 @@ function insertListenerToDom(courseInfo, dom) {
         swiperButtonPrev.style.cssText += "border: 0;background-color: transparent;";
 
         for (let [course, info] of filtered_yearsem_info) {
-          console.log(course, info);
-          let distribution = info.distribution;
+          let distribution = Object.entries(info.distribution).sort();
           let data = {
             datasets: [{
-              data: Object.values(distribution),
-              backgroundColor: Object.keys(distribution).map(color => {
+              data: distribution.map(arr => arr[1]),
+              backgroundColor: distribution.map(arr => {
                 return {
                   "A+": 'rgba(54, 162, 235, 0.8)',
                   "A" : 'rgba(54, 162, 235, 0.5)',
@@ -67,10 +54,10 @@ function insertListenerToDom(courseInfo, dom) {
                   "F" : 'rgba(255, 99, 132, 0.5)',
                   "X" : 'rgba(255, 99, 132, 0.3)',
                   "unknown": 'rgba(0, 0, 0, 0.2)',
-              }[color]}),
+              }[arr[0]]}),
               borderWidth: 0,
             }],
-            labels: Object.keys(distribution)
+            labels: distribution.map(arr => arr[0])
           };
           swiperWrapper.appendChild(insertPieChart(data, course, course_id));
         }
@@ -81,7 +68,20 @@ function insertListenerToDom(courseInfo, dom) {
         swiperContainer.appendChild(swiperButtonPrev);
         popper.appendChild(swiperContainer);
 
-        popperInstance = Popper.createPopper(mouseEvent.target, popper, {
+        new Swiper('.swiper-container', {
+          spaceBetween: 30,
+          centeredSlides: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+          }
+        });
+
+        popperInstance = Popper.createPopper(mouseEvent.target, dom.querySelector(".popper"), {
           placement: 'left',
           modifiers: [{
             name: 'offset',
@@ -95,7 +95,7 @@ function insertListenerToDom(courseInfo, dom) {
     target.addEventListener("mouseleave", (mouseEvent) => {
       menuOpenCloseErgoTimer (300, () => {
         popper.setAttribute("hidden", "");
-        mouseEvent.target.querySelectorAll('.swiper-container').forEach(e => e.parentNode.removeChild(e));
+        popper.querySelectorAll('.swiper-container').forEach(e => e.parentNode.removeChild(e));
       });
     });
     target.addEventListener("mousemove", (mouseEvent) => {
