@@ -1,7 +1,7 @@
 {
   "name": "mins",
   "description": "A community sharing score distributions",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "manifest_version": 2,
   "permissions": [
     "https://*.ifsel3.aca.ntu.edu.tw/*",
