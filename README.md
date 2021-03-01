@@ -1,4 +1,4 @@
-# mins v1.0.0
+# ScoreSharing v1.1.1
 
 A browser extension that shares score distributions by adding GPA column extended from NTHU_ScoreSharing.
 You will be able to see score distributions of curriculums if anyone with this extension has it.  

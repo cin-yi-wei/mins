@@ -34,7 +34,7 @@ function insertListenerToDom(courseInfo, dom) {
         swiperButtonNext.style.cssText += "border: 0;background-color: transparent;";
         swiperButtonPrev.style.cssText += "border: 0;background-color: transparent;";
 
-        for (let [course, info] of filtered_yearsem_info) {
+        for (let [year_sem, info] of filtered_yearsem_info) {
           let distribution = Object.entries(info.distribution).sort();
           let data = {
             datasets: [{
@@ -59,7 +59,7 @@ function insertListenerToDom(courseInfo, dom) {
             }],
             labels: distribution.map(arr => arr[0])
           };
-          swiperWrapper.appendChild(insertPieChart(data, course, course_id));
+          swiperWrapper.appendChild(insertPieChart(data, year_sem, info));
         }
 
         swiperContainer.appendChild(swiperWrapper);

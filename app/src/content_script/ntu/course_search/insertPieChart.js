@@ -1,8 +1,8 @@
-function insertPieChart(data,year_sem,course_id){
+function insertPieChart(data, year_sem, course) {
   let pieOptions = {
       title: {
         display: true,
-        text: year_sem+" "+course_id
+        text: year_sem + ' ' + course.instructor + ' 平均：' + course.average
       },
       radiusBackground: {
         color: '#d1d1d1'
@@ -43,10 +43,10 @@ function insertPieChart(data,year_sem,course_id){
       }
     };
 
-  let canvas = document.createElement("CANVAS")
+  let canvas = document.createElement("canvas")
   canvas.className = "swiper-slide";
   let countries = canvas.getContext("2d");
-  new Chart(countries,{
+  new Chart(countries, {
     type: 'doughnut',
     data: data,
     options: pieOptions

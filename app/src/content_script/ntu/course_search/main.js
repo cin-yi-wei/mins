@@ -26,7 +26,10 @@ then(response => {
   if (response.fail) {
     return fetchTranscript('NTU').
     then(() => loadCourses(input)).
-    then(insertPresentation)
+    then(courseInfo => {
+      insertPresentation(courseInfo);
+      insertListenerToDom(courseInfo, document);
+    });
   } else {
     insertPresentation(response);
     insertListenerToDom(response, document);
