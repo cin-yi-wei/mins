@@ -2,7 +2,9 @@ function insertPieChart(data, year_sem, course) {
   let pieOptions = {
       title: {
         display: true,
-        text: year_sem + ' ' + course.instructor + ' 平均：' + course.average
+        text: [year_sem + ' ' + course.instructor + ' 平均：' + course.average, 
+               "修了這堂課的人也修了",
+               data.recommendation.join()]
       },
       radiusBackground: {
         color: '#d1d1d1'
